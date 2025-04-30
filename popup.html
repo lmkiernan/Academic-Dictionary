@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Popup</title>
-  <style>
-    body {
-      width: 250px;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      font-family: sans-serif;
-      text-align: center;
-    }
-    #selection {
-      padding: 0 10px;
-      word-break: break-word;
-    }
-  </style>
-</head>
-<body>
-  <div id="selection">(highlight text on page…)</div>
-  <script src="popup.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body { font-family: sans-serif; padding: 10px; }
+      #apiKey { width: 100%; box-sizing: border-box; margin-bottom: 8px; }
+      button { padding: 4px 8px; }
+      #status { font-size: 0.9em; color: green; margin-top: 4px; }
+    </style>
+  </head>
+  <body>
+    <!-- API Key entry -->
+    <input
+      id="apiKey"
+      type="password"
+      placeholder="Enter your OpenAI API Key"
+    />
+    <button id="saveKey">Save Key</button>
+    <div id="status"></div>
+
+    <hr />
+
+    <!-- Highlighted text display -->
+    <div id="selection">(no text selected)</div>
+
+    <script src="popup.js"></script>
+  </body>
 </html>
