@@ -1,17 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <title>Academic Dictionary</title>
     <style>
       html, body {
         width: 400px;
         height: 600px;
         box-sizing: border-box;
-        margin: 0; padding: 10px;
+        margin: 0;
+        padding: 10px;
         font-family: sans-serif;
         overflow: auto;
       }
-      button { margin: 4px 0; padding: 4px 8px; }
+      /* Key entry view */
+      #apiKey {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 8px;
+      }
+      #saveKey {
+        padding: 4px 8px;
+      }
+      #status {
+        font-size: 0.9em;
+        margin-top: 4px;
+      }
+      /* Definition and notes */
+      #selection {
+        margin: 8px 0;
+        padding: 6px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        min-height: 40px;
+      }
+      #definition {
+        margin-top: 12px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        white-space: pre-wrap;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+      #saveNote {
+        margin: 8px 0;
+        padding: 4px 8px;
+      }
       #notesList {
         max-height: 200px;
         overflow-y: auto;
@@ -29,16 +65,33 @@
     </style>
   </head>
   <body>
-    <!-- Key-entry and main-view code above... -->
-
-    <!-- after your definition display -->
-    <button id="saveNote">Save to Notes</button>
+    <!-- KEY ENTRY VIEW -->
+    <div id="keyView">
+      <h4>Enter OpenAI Key</h4>
+      <input id="apiKey" type="password" placeholder="sk-..." />
+      <button id="saveKey">Save</button>
+      <div id="status"></div>
+    </div>
 
     <hr />
 
-    <h4>My Notes</h4>
-    <div id="notesList">
-      <!-- dynamically populated -->
+    <!-- MAIN VIEW -->
+    <div id="mainView" style="display: none;">
+      <div>
+        <strong>Selected text:</strong>
+        <div id="selection">(no text selected)</div>
+      </div>
+
+      <div id="definition">(waiting for selection…)</div>
+
+      <button id="saveNote">Save to Notes</button>
+
+      <hr />
+
+      <h4>My Notes</h4>
+      <div id="notesList">
+        <!-- saved notes appear here -->
+      </div>
     </div>
 
     <script src="popup.js"></script>
