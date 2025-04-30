@@ -3,38 +3,47 @@
   <head>
     <meta charset="utf-8" />
     <style>
-        /* ← Add this block or drop into your existing styles */
-        html, body {
-          width: 400px;       /* adjust to taste */
-          height: 600px;      /* adjust to taste */
-          box-sizing: border-box;
-          margin: 0;
-          padding: 10px;      /* or whatever padding you like */
-          overflow: auto;     /* scroll if content overflows */
-          font-family: sans-serif;
-        }
+      html, body {
+        width: 400px;
+        height: 600px;
+        box-sizing: border-box;
+        margin: 0; padding: 10px;
+        font-family: sans-serif;
+        overflow: auto;
+      }
+      #apiKey { width: 100%; margin-bottom: 8px; }
+      button { margin-right: 8px; padding: 4px 8px; }
+      #status { font-size: 0.9em; margin-top: 4px; }
+      #definition {
+        margin-top: 12px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        white-space: pre-wrap;
+        max-height: 300px;
+        overflow-y: auto;
+      }
     </style>
   </head>
   <body>
-
-    <!-- ========== KEY ENTRY VIEW ========== -->
+    <!-- KEY ENTRY VIEW -->
     <div id="keyView">
       <h4>Enter OpenAI Key</h4>
-      <input
-        id="apiKey"
-        type="password"
-        placeholder="sk-…"
-      />
+      <input id="apiKey" type="password" placeholder="sk-…" />
       <button id="saveKey">Save</button>
       <div id="status"></div>
     </div>
 
     <hr />
 
-    <!-- ========== MAIN VIEW ========== -->
+    <!-- MAIN VIEW -->
     <div id="mainView" style="display: none;">
-      <div id="selection">(no text selected)</div>
-      <!-- you’ll later add buttons here to “Define” via GPT -->
+      <div>
+        <strong>Selected text:</strong>
+        <div id="selection">(no text selected)</div>
+      </div>
+      <button id="defineBtn">Define</button>
+      <div id="definition">(click “Define” to ask GPT…)</div>
     </div>
 
     <script src="popup.js"></script>

@@ -6,6 +6,9 @@
       "contextMenus",
       "storage"
     ],
+   "host_permissions": [
+     "https://api.openai.com/*"
+  ],
     "action": {
       "default_popup": "popup.html"
     },
