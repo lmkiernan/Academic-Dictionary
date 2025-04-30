@@ -3,26 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <style>
-      body { font-family: sans-serif; padding: 10px; }
+      body { font-family: sans-serif; padding: 10px; max-width: 300px; }
       #apiKey { width: 100%; box-sizing: border-box; margin-bottom: 8px; }
       button { padding: 4px 8px; }
-      #status { font-size: 0.9em; color: green; margin-top: 4px; }
+      #status { font-size: 0.9em; margin-top: 4px; }
     </style>
   </head>
   <body>
-    <!-- API Key entry -->
-    <input
-      id="apiKey"
-      type="password"
-      placeholder="Enter your OpenAI API Key"
-    />
-    <button id="saveKey">Save Key</button>
-    <div id="status"></div>
+
+    <!-- ========== KEY ENTRY VIEW ========== -->
+    <div id="keyView">
+      <h4>Enter OpenAI Key</h4>
+      <input
+        id="apiKey"
+        type="password"
+        placeholder="sk-…"
+      />
+      <button id="saveKey">Save</button>
+      <div id="status"></div>
+    </div>
 
     <hr />
 
-    <!-- Highlighted text display -->
-    <div id="selection">(no text selected)</div>
+    <!-- ========== MAIN VIEW ========== -->
+    <div id="mainView" style="display: none;">
+      <div id="selection">(no text selected)</div>
+      <!-- you’ll later add buttons here to “Define” via GPT -->
+    </div>
 
     <script src="popup.js"></script>
   </body>
