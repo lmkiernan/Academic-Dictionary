@@ -26,7 +26,7 @@
         font-size: 0.9em;
         margin-top: 4px;
       }
-      /* Definition and notes */
+      /* Definition and controls */
       #selection {
         margin: 8px 0;
         padding: 6px;
@@ -44,8 +44,8 @@
         max-height: 200px;
         overflow-y: auto;
       }
-      #saveNote {
-        margin: 8px 0;
+      #simplerBtn, #saveNote {
+        margin: 8px 4px 0 0;
         padding: 4px 8px;
       }
       #notesList {
@@ -82,8 +82,10 @@
         <div id="selection">(no text selected)</div>
       </div>
 
-      <div id="definition">(waiting for selection…)</div>
+      <div id="definition">(waiting for definition…)</div>
 
+      <!-- New Simpler button -->
+      <button id="simplerBtn">Simpler!</button>
       <button id="saveNote">Save to Notes</button>
 
       <hr />
