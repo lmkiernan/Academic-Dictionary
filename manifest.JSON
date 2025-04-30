@@ -3,10 +3,13 @@
     "name": "Academic Dictionary",
     "version": "1.0",
     "permissions": [
-        "activeTab",
-        "scripting"
+      "contextMenus",
+      "storage"
     ],
     "action": {
-        "default_popup": "popup.html"
+      "default_popup": "popup.html"
+    },
+    "background": {
+      "service_worker": "background.js"
     }
   }
