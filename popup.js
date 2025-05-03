@@ -88,13 +88,30 @@ async function callGemini(key, text, simpler) {
     ? `Explain simply with an example: "${text}"`
     : `Define academically: "${text}"`;
 
-  const response = await fetch(
-    'https://gemini.googleapis.com/v1beta2/models/text-bison-001:generateMessage', {
+  // Build the URL with your Gemini key as a query parameter
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`;
+
+  // Construct the request body in the "generateContent" shape
+  const body = {
+    contents: [
+      {
+        parts: [
+          { text: prompt }
+        ]
+      }
+    ]
+  };
+
+  const res = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-    body: JSON.stringify({ model: 'models/text-bison-001', messages: [{ author: 'user', content: prompt }] })
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
   });
-  const json = await response.json();
+
+  const json = await res.json();
+  // The response returns `candidates`, pick the first
   return json.candidates?.[0]?.content || '(error)';
 }
 
