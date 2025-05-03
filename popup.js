@@ -88,10 +88,7 @@ async function callGemini(key, text, simpler) {
     ? `Explain simply with an example: "${text}"`
     : `Define academically: "${text}"`;
 
-  // Build the URL with your Gemini key as a query parameter
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(key)}`;
-
-  // Construct the request body in the "generateContent" shape
   const body = {
     contents: [
       {
@@ -104,15 +101,20 @@ async function callGemini(key, text, simpler) {
 
   const res = await fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   });
-
   const json = await res.json();
-  // The response returns `candidates`, pick the first
-  return json.candidates?.[0]?.content || '(error)';
+  const candidate = json.candidates?.[0];
+  const contentObj = candidate?.content;
+
+  // Join all parts into a single string (or just take the first part)
+  const explanation = contentObj?.parts
+    ?.map(part => part.text)
+    .join('') 
+    || '(error)';
+    
+  return explanation;
 }
 
 function renderNotes(notes) {
