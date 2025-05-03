@@ -1,19 +1,20 @@
 {
-    "manifest_version": 3,
-    "name": "Academic Dictionary",
-    "version": "1.0",
-    "permissions": [
-      "contextMenus",
-      "storage",
-      "tabs"
-    ],
-   "host_permissions": [
-     "https://api.openai.com/*"
+  "manifest_version": 3,
+  "name": "Academic Dictionary",
+  "version": "1.0",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "tabs"
   ],
-    "action": {
-      "default_popup": "popup.html"
-    },
-    "background": {
-      "service_worker": "background.js"
-    }
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://gemini.googleapis.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
   }
+}

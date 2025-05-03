@@ -1,102 +1,43 @@
-<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Academic Dictionary</title>
-    <style>
-      html, body {
-        width: 400px;
-        height: 600px;
-        box-sizing: border-box;
-        margin: 0;
-        padding: 10px;
-        font-family: sans-serif;
-        overflow: auto;
-      }
-      /* Key entry view */
-      #apiKey {
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 8px;
-      }
-      #saveKey {
-        padding: 4px 8px;
-      }
-      #status {
-        font-size: 0.9em;
-        margin-top: 4px;
-      }
-      /* Definition and controls */
-      #selection {
-        margin: 8px 0;
-        padding: 6px;
-        background: #f9f9f9;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        min-height: 40px;
-      }
-      #definition {
-        margin-top: 12px;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        white-space: pre-wrap;
-        max-height: 200px;
-        overflow-y: auto;
-      }
-      #simplerBtn, #saveNote {
-        margin: 8px 4px 0 0;
-        padding: 4px 8px;
-      }
-      #notesList {
-        max-height: 200px;
-        overflow-y: auto;
-        margin-top: 8px;
-      }
-      .note-item {
-        border-bottom: 1px solid #eee;
-        padding: 6px 0;
-      }
-      .note-item time {
-        display: block;
-        font-size: 0.8em;
-        color: #666;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- KEY ENTRY VIEW -->
-    <div id="keyView">
-      <h4>Enter OpenAI Key</h4>
-      <input id="apiKey" type="password" placeholder="sk-..." />
-      <button id="saveKey">Save</button>
-      <div id="status"></div>
-    </div>
+<head>
+  <meta charset="UTF-8">
+  <title>Setup API Key</title>
+  <style>
+    body { font-family: sans-serif; padding: 10px; width: 300px; }
+    #keyView, #mainView { margin-bottom: 15px; }
+    .hidden { display: none; }
+    button { margin-top: 5px; }
+  </style>
+</head>
+<body>
+  <div id="keyView">
+    <h3>Choose a provider:</h3>
+    <button id="useOpenAI">Use OpenAI (GPT)</button>
+    <button id="useGemini">Use Gemini</button>
 
+    <div id="openaiInput" class="hidden">
+      <p>Enter your OpenAI API Key:</p>
+      <input type="text" id="openAIKeyInput" placeholder="sk-..." style="width:100%;" />
+      <button id="saveOpenAIKey">Save OpenAI Key</button>
+    </div>
+    <div id="geminiInput" class="hidden">
+      <p>Enter your Gemini API Key:</p>
+      <input type="text" id="geminiKeyInput" placeholder="YOUR_GEMINI_KEY" style="width:100%;" />
+      <button id="saveGeminiKey">Save Gemini Key</button>
+    </div>
+  </div>
+
+  <div id="mainView" class="hidden">
+    <div><strong>Selected text:</strong><div id="selection">(no text selected)</div></div>
+    <div id="definition">(waiting for definition…)</div>
+    <button id="simplerBtn">Simpler!</button>
+    <button id="saveNote">Save to Notes</button>
+    <button id="aboutBtn">About</button>
     <hr />
+    <h4>My Notes</h4>
+    <div id="notesList"></div>
+  </div>
 
-    <!-- MAIN VIEW -->
-    <div id="mainView" style="display: none;">
-      <div>
-        <strong>Selected text:</strong>
-        <div id="selection">(no text selected)</div>
-      </div>
-
-      <div id="definition">(waiting for definition…)</div>
-
-      <!-- New Simpler button -->
-      <button id="simplerBtn">Simpler!</button>
-      <button id="saveNote">Save to Notes</button>
-      <button id="aboutBtn">About</button>
-
-      <hr />
-
-      <h4>My Notes</h4>
-      <div id="notesList">
-        <!-- saved notes appear here -->
-      </div>
-    </div>
-
-    <script src="popup.js"></script>
-  </body>
+  <script src="popup.js"></script>
+</body>
 </html>
