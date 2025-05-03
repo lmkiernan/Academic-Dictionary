@@ -40,6 +40,55 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function formatDefinition(raw) {
+  if (!raw) return '';
+
+  // 1. Escape any accidental HTML
+  let escaped = raw
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;');
+
+  // 2. Bold: **text**
+  escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+  // 3. Build lines
+  const lines = escaped.split('\n');
+  let inList = false;
+  const out = [];
+
+  for (let line of lines) {
+    line = line.trim();
+    if (!line) {
+      // blank line → close any open list
+      if (inList) {
+        out.push('</ul>');
+        inList = false;
+      }
+      continue;
+    }
+
+    if (line.startsWith('* ')) {
+      // list item
+      if (!inList) {
+        out.push('<ul>');
+        inList = true;
+      }
+      out.push(`<li>${line.slice(2)}</li>`);
+    } else {
+      // normal paragraph
+      if (inList) {
+        out.push('</ul>');
+        inList = false;
+      }
+      out.push(`<p>${line}</p>`);
+    }
+  }
+  if (inList) out.push('</ul>');
+
+  return out.join('');
+}
+
 function initMainView(data = {}) {
   document.getElementById('keyView').classList.add('hidden');
   document.getElementById('mainView').classList.remove('hidden');
@@ -56,14 +105,19 @@ function initMainView(data = {}) {
 
 async function fetchDefinition(text, simpler = false) {
   const defEl = document.getElementById('definition');
-  defEl.textContent = '(loading...)';
+  defEl.innerHTML = '(loading…)';   // use innerHTML here too
+
+  let raw;
   if (provider === PROVIDERS.OPENAI) {
     const { openAIKey } = await chrome.storage.local.get('openAIKey');
-    defEl.textContent = await callOpenAI(openAIKey, text, simpler);
+    raw = await callOpenAI(openAIKey, text, simpler);
   } else {
     const { geminiKey } = await chrome.storage.local.get('geminiKey');
-    defEl.textContent = await callGemini(geminiKey, text, simpler);
+    raw = await callGemini(geminiKey, text, simpler);
   }
+
+  // instead of textContent, render formatted HTML:
+  defEl.innerHTML = formatDefinition(raw);
 }
 
 async function callOpenAI(key, text, simpler) {
