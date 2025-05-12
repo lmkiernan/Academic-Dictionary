@@ -217,7 +217,7 @@ function initMainView(data = {}) {
   };
   
   document.getElementById('aboutBtn').onclick = () => {
-    chrome.tabs.create({ url: 'https://github.com/yourusername/Academic-Dictionary' });
+    chrome.tabs.create({ url: 'https://gchen9405.github.io/unblur-landing-final/' });
   };
   
   // add settings button functionality
