@@ -37,6 +37,10 @@ Joyce Chen: UI and User Flow
 - Added error handling for invalid API keys and duplicate note saving with user-friendly notifications
 - Improved user flow with the ability to change API keys and providers at any time
 
+Immanuel Anaborne: Testing and Notes Functionality
+- Conducted rigorous manual testing across all functionalities of the extension
+- Implemented a smooth and intuitive way for users to save AI-generated notes into the notes list in the popup
+
 ## Known Issues & Future Work
 
 - No synchronization of saved definitions across devices
