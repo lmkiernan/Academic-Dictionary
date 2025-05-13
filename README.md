@@ -28,9 +28,15 @@ Academic Dictionary allows you to quickly look up definitions for academic terms
 
 ## Individual Contributions
 
-Liam Kiernan:
+Liam Kiernan: Backend and AI integration
+- Started from "scratch" with developing an pre-aesthetic working application
+- Completed the highlighting, API integration, and "easy use" capabilities
+- Extremely minimal product development
 
-Gordon Chen:
+Gordon Chen: Landing Page and Video
+- Created our landing page for our product explaining how to use it
+- Integrated our landing page into the extension
+- Spearheaded the video describing how to use our product
 
 Joyce Chen: UI and User Flow
 - Modern user interface with clean styling
